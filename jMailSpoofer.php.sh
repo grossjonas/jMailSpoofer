@@ -5,12 +5,11 @@
 #echo $argv[1];
 
 #$stdin = fopen('php://stdin', 'r');
-#mail ("debug@hagos.de", "bestellung 60937", $stdin, "FROM:knuddel@muddel.com");
+#mail ("user@example.com", "test", $stdin, "FROM:knuddel@muddel.com");
 
 #$email = file_get_contents( $argv[1] );
-#mail ("debug@hagos.de", "bestellung 60937", $email, "FROM:knuddel@muddel.com");
-#mail ("debug@hagos.de", "bestellung 60937", $email); <- Das FROM wird echt benoetigt
-
+#mail ("user@example.com", "test", $email, "FROM:knuddel@muddel.com");
+#mail ("user@example.com", "test", $email); <- FROM is not optional
 
 $lines = file( $argv[1] );
 $header = true;
@@ -26,12 +25,7 @@ foreach($lines as $line){
 		if(strlen($line) == 2){
 			echo ord($line[0]) . "|" . ord($line[1]) . "\n";
 		}
-		*/
-
-		#TODO: starts with From:
-		#TODO: starts with Subject:
-
-		#if( $line === "\r\n"){			
+		*/ #if( $line === "\r\n"){			
 		#if( strcmp($line,"\r\n")){
 		if( strlen(trim($line)) == 0){			
 			$header = false;
@@ -64,7 +58,7 @@ foreach($lines as $line){
 echo $subject . "\n";
 echo $from . "\n";
 
-#mail ("debug@hagos.de", "fakemailtest", $email, "FROM:knuddel@muddel.com");
-mail ("debug@hagos.de", $subject, $email, "FROM:".$from);
+#mail ("user@example.com", "fakemailtest", $email, "FROM:knuddel@muddel.com");
+mail ("user@example.com", $subject, $email, "FROM:".$from);
 
 ?>
